@@ -5,5 +5,5 @@ QUATRE,
 TROIS,
 DEUX,
 AS,
-Zero
+ZERO
 }

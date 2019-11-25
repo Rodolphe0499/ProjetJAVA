@@ -8,7 +8,7 @@ public class Partie {
 	
 	private int nbreJoueur ;
 	private int nbreBots;
-	private ArrayList<Joueur> joueurs;
+	private LinkedList<Joueur> joueurs;
 	private dekCarte dek;
 	private Stack stack;
 	private TropheeTiree tropheeTiree;
@@ -49,7 +49,7 @@ public class Partie {
 			this.nbreBots= numero-nbrejoueur;
 		}
 				
-		joueurs = new ArrayList<Joueur>();
+	    List	joueurs = new LinkedList<Joueur>();
 		
 		//Création des joueurs rééls
 		int i =0;
@@ -80,16 +80,15 @@ public class Partie {
 		dek = new dekCarte();
 		dek.melanger();
 		//System.out.println("\n Deck:"+dek);
-		distribuerCarte();
-		for (i=0; i<joueurs.size();i++) {
-			System.out.print(joueurs.get(i)+" ");
-			System.out.println("ok");
-		}
+		distribuerDek();
+		/*for (i=0; i<joueurs.size();i++) {
+			System.out.print(joueurs.get(i)+" ");  // il faudrait mieux mettre une methode pour afficher les cartes.
+		}*/
 		
 
     }
 	
-	public void distribuerCarte() {
+	public void distribuerDek() {
 		for (int i=0; i<joueurs.size();i++) {
 			joueurs.get(i).recevoirCarte(dek.tirerCarteDuDessus());
 			joueurs.get(i).recevoirCarte(dek.tirerCarteDuDessus());
@@ -97,6 +96,117 @@ public class Partie {
 		
 	}
 	
+	public void distribuerStack() {
+		for (int i=0; i<joueurs.size();i++) {
+			joueurs.get(i).recevoirCarte(stack.tirerCarteDuDessus());
+			joueurs.get(i).recevoirCarte(stack.tirerCarteDuDessus());
+		}
+	}
+	
 		
+	public void afficherMainsJoueurs() {
+		int i=0;
+		for (i=0; i<joueurs.size();i++) {
+			System.out.println(joueurs.get(i)+" ");  
+	    }
+    }
+	public Joueur determinerPremierJoueur() {
+		Valeur v= Valeur.AS;
+		int j =0;
+		int i=1;
+	
+			/*for(i=1; i <=joueurs.size(); i++) {
+				if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.AS)&&(v== Valeur.AS)) {
+					
+				}
+				
+                 if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.DEUX)&&(v== Valeur.AS)) {
+					v= Valeur.DEUX;
+					j=i;
+				}
+                 
+                 if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.TROIS)&&(v== Valeur.AS)) {
+                	 v= Valeur.TROIS;
+                	 j=i;
+ 				}
+                 
+                 if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.QUATRE)&&(v== Valeur.AS)) {
+ 					v=Valeur.QUATRE;
+ 					j=i;
+ 				}
+                 if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.ZERO)&&(v== Valeur.AS)) {
+ 					v=Valeur.AS;
+ 					j=i;
+ 				} 
+                 
+                 if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.AS)&&(v== Valeur.DEUX)) {
+ 					
+ 				}
+ 				
+                  if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.DEUX)&&(v== Valeur.DEUX)) {
+ 					
+ 				}
+                  
+                  if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.TROIS)&&(v== Valeur.DEUX)) {
+                 	 v= Valeur.TROIS;
+  				}
+                  
+                  if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.QUATRE)&&(v== Valeur.DEUX)) {
+  					v=Valeur.QUATRE;
+  				}
+                  if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.ZERO)&&(v== Valeur.DEUX)) {
+  					v=Valeur.DEUX;
+  				} 
+                  if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.AS)&&(v== Valeur.TROIS)) {
+  					
+  				}
+  				
+                   if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.DEUX)&&(v== Valeur.TROIS)) {
+  					
+  				}
+                   
+                   if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.TROIS)&&(v== Valeur.TROIS)) {
+                  	
+   				}
+                   
+                   if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.QUATRE)&&(v== Valeur.TROIS)) {
+   					v=Valeur.QUATRE;
+   				}
+                   if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.ZERO)&&(v== Valeur.TROIS)) {
+   					v=Valeur.TROIS;
+   				} 
+                   if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.AS)&&(v== Valeur.QUATRE)) {
+   					
+   				}
+   				
+                    if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.DEUX)&&(v== Valeur.QUATRE)) {
+   					
+   				}
+                    
+                    if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.TROIS)&&(v== Valeur.QUATRE)) {
+                   	
+    			}
+                    
+                    if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.QUATRE)&&(v== Valeur.QUATRE)) {
+    					
+    			}
+                    if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.ZERO)&&(v== Valeur.QUATRE)) {
+    					v=Valeur.QUATRE;
+                }	
+    				
+			}
+			return v;*/
+		ListIterator it = joueurs.listIterator();
+		for(i=1; i <=joueurs.size(); i++) {
+			if(it.hasNext()) {
+				
+				
+			}
+		}
+		
+		
+	}
+	
+	
 	
 }
