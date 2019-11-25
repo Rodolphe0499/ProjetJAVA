@@ -56,6 +56,7 @@ public class Joueur {
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		sb.append(this.pseudo);
+		sb.append(this.main);
 		return sb.toString();
 	}
 	

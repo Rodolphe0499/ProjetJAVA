@@ -79,13 +79,22 @@ public class Partie {
 		stack = new Stack();
 		dek = new dekCarte();
 		dek.melanger();
+		//System.out.println("\n Deck:"+dek);
+		distribuerCarte();
+		for (i=0; i<joueurs.size();i++) {
+			System.out.print(joueurs.get(i)+" ");
+		}
+		
 
     }
 	
-	/*public void distribuerCarte() {
+	public void distribuerCarte() {
+		for (int i=0; i<joueurs.size();i++) {
+			joueurs.get(i).recevoirCarte(dek.tirerCarteDuDessus());
+			joueurs.get(i).recevoirCarte(dek.tirerCarteDuDessus());
+		}
 		
-		
-	}*/
+	}
 	
 		
 	
