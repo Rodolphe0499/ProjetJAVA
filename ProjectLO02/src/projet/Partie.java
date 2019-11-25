@@ -83,6 +83,7 @@ public class Partie {
 		distribuerCarte();
 		for (i=0; i<joueurs.size();i++) {
 			System.out.print(joueurs.get(i)+" ");
+			System.out.println("ok");
 		}
 		
 
