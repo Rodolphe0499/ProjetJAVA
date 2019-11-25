@@ -71,16 +71,15 @@ public class Partie {
 		
 		System.out.println("Voici la liste des participants:");
 		for (i=0; i<joueurs.size();i++) {
-			System.out.println(joueurs.get(i));
+			System.out.print(joueurs.get(i)+" ");
 		}
 		
 		
 		
 		stack = new Stack();
-		
 		dek = new dekCarte();
-		
-		//dek.melanger();		
+		dek.melanger();
+
     }
 	
 	/*public void distribuerCarte() {

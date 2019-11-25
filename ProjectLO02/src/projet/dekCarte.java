@@ -14,7 +14,7 @@ public class dekCarte {
     	Carte joker = new Carte(Couleur.PIQUE,Valeur.Zero,false,Trophee.BestJest);
     	
     	for (Valeur v : Valeur.values()) {
-    		Carte carte = new Carte(Couleur.COEUR,v, false, Trophee.BestJest);
+    		Carte carte = new Carte(Couleur.COEUR,v, false, Trophee.Joker);
     		dek.add(carte);
     		
     	}
@@ -39,12 +39,9 @@ public class dekCarte {
     }
     
     public  void melanger() {
-    	for(int i=0; i < dekCarte.NOMBRE_DE_CARTES; i++) {
-    		int position = (int) Math.round((dekCarte.NOMBRE_DE_CARTES - 1 )*Math.random());
-    		Carte carte = dek.pop();
-    		dek.add(position,carte);
-    	}
+    	Collections.shuffle(dek);
     }
+    
     
     public Carte tirerCarteDuDessus() {
     	return dek.pop();
@@ -62,14 +59,6 @@ public class dekCarte {
     public String toString() {
     	return dek.toString();
     }
-	public static void main(String[] args) {
-		
-		dekCarte d = new dekCarte();
-		
-		d.toString();
-		
-		
 
-	}
 
 }
