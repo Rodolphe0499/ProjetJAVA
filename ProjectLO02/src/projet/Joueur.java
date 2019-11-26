@@ -46,18 +46,13 @@ public class Joueur {
 	}
 	
 	
-	public void afficherCarteJoueur() {
-		int i=1;
-		for (i=1; i<=2; i++) {
-			if(main.get(i).getFaceCarte()==true)
-			System.out.println(main.get(i).toString());
-		}
+	public String afficherCarteJoueur() {
+		return main.toString();
+
 	}
+	
 	public String toString() {
-		StringBuffer sb = new StringBuffer();
-		sb.append(this.pseudo);
-		sb.append(this.main);
-		return sb.toString();
+		return this.pseudo.toString();
 	}
 	
 	public Valeur ValeurCarteFaceOuverte() {    

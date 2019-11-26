@@ -49,7 +49,7 @@ public class Partie {
 			this.nbreBots= numero-nbrejoueur;
 		}
 				
-	    List	joueurs = new LinkedList<Joueur>();
+	    joueurs = new LinkedList<Joueur>();
 		
 		//Création des joueurs rééls
 		int i =0;
@@ -75,16 +75,15 @@ public class Partie {
 		}
 		
 		
-		
 		stack = new Stack();
 		dek = new dekCarte();
 		dek.melanger();
-		//System.out.println("\n Deck:"+dek);
-		distribuerDek();
-		/*for (i=0; i<joueurs.size();i++) {
-			System.out.print(joueurs.get(i)+" ");  // il faudrait mieux mettre une methode pour afficher les cartes.
-		}*/
+		System.out.println("\nDeck:"+dek);
+		this.distribuerDek();
 		
+		for (int s=0; s<joueurs.size();s++) {
+			System.out.println("Voici tes cartes:"+joueurs.get(s).afficherCarteJoueur());
+		}
 
     }
 	

@@ -11,7 +11,7 @@ public class dekCarte {
     public dekCarte () {
     	
     	dek = new LinkedList<Carte>();
-    	Carte joker = new Carte(Couleur.PIQUE,Valeur.Zero,false,Trophee.BestJest);
+    	Carte joker = new Carte(Couleur.PIQUE,Valeur.ZERO,false,Trophee.BestJest);
     	
     	for (Valeur v : Valeur.values()) {
     		Carte carte = new Carte(Couleur.COEUR,v, false, Trophee.Joker);
