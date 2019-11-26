@@ -46,10 +46,10 @@ public class Joueur {
 				this.cartejoue=numero;
 			}		
 			if(numero == 1) {
-				main.get(1).retournerCarte();
+				main.get(0).retournerCarte();
 			}
 			else if (numero == 2) {
-				main.get(2).retournerCarte();
+				main.get(1).retournerCarte();
 			}
 		
 		}

@@ -124,10 +124,10 @@ public class Partie {
 			System.out.println(joueurs.get(i)+" ");  
 	    }
     }
-	public Joueur determinerPremierJoueur() {
+	/*public Joueur determinerPremierJoueur() {
 		Valeur v= Valeur.AS;
 		int j =0;
-		int i=1;
+		int i=1;*/
 	
 			/*for(i=1; i <=joueurs.size(); i++) {
 				if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.AS)&&(v== Valeur.AS)) {
@@ -210,7 +210,7 @@ public class Partie {
     				
 			}
 			return v;*/
-		ListIterator it = joueurs.listIterator();
+	/*	ListIterator it = joueurs.listIterator();
 		for(i=1; i <=joueurs.size(); i++) {
 			if(it.hasNext()) {
 				
@@ -219,7 +219,7 @@ public class Partie {
 		}
 		
 		
-	}
+	}*/
 	
 	
 	
