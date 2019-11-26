@@ -33,28 +33,34 @@ public class Joueur {
 		main.add(cartes);
 	}
 	
-	public int choisirFaceCarte() {
+	public void choisirFaceCarte() {
 		if (type_joueur == true) {
 			Scanner sc = new Scanner(System.in);
-			System.out.println("\n[Joueur] "+this.pseudo+", voulez-vous retourner la première carte ou la seconde(1/2)?");
+			System.out.println("[Joueur] "+this.pseudo+", voulez-vous retourner la première carte ou la seconde(1/2)?");
 			int numero = sc.nextInt();
-		
 			while((numero != 1)&&(numero != 2)){
 				System.out.println(">>>Veuillez taper 1 ou 2 !");
-				numero = sc.nextInt();
-			
+				numero = sc.nextInt();	
 			}		
+			if(numero == 1) {
+				main.get(1).retournerCarte();
+			}
+			else if (numero == 2) {
+				main.get(2).retournerCarte();
+			}
 		
-			return numero;
 		}
 		else if (type_joueur == false) {
 			 Random r = new Random();
 			 int n = r.nextInt(1)+1;
-			 return n;
+			 if(n == 1) {
+					main.get(1).retournerCarte();
+				}
+			else if (n == 2) {
+				main.get(2).retournerCarte();
+			}
 		}
-		else {
-			return 0;
-		}
+		
 	}
 	
 	
@@ -67,7 +73,7 @@ public class Joueur {
 		return this.pseudo.toString();
 	}
 	
-	public Valeur ValeurCarteFaceOuverte() {    
+/*	public Valeur ValeurCarteFaceOuverte() {    
 		Valeur v = Valeur.AS;
 		if (this.choisirCarte()==1) {
 			v =main.get(0).getValeur();
@@ -78,6 +84,6 @@ public class Joueur {
 		
 		return v;
 	}
-	
+*/
 	
 }
