@@ -33,19 +33,28 @@ public class Joueur {
 		main.add(cartes);
 	}
 	
-	public int choisirCarte() {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Voulez-vous retourner la première carte ou la seconde(tapez 1 ou 2)?");
-		int numero = sc.nextInt();
+	public int choisirFaceCarte() {
+		if (type_joueur == true) {
+			Scanner sc = new Scanner(System.in);
+			System.out.println("\n[Joueur] "+this.pseudo+", voulez-vous retourner la première carte ou la seconde(1/2)?");
+			int numero = sc.nextInt();
 		
-		while((numero != 1)&&(numero != 2)){
-			System.out.println("Veuillez taper 1 ou 2 ");
-			numero = sc.nextInt();
+			while((numero != 1)&&(numero != 2)){
+				System.out.println(">>>Veuillez taper 1 ou 2 !");
+				numero = sc.nextInt();
 			
-		}
-				
+			}		
 		
-		return numero;
+			return numero;
+		}
+		else if (type_joueur == false) {
+			 Random r = new Random();
+			 int n = r.nextInt(1)+1;
+			 return n;
+		}
+		else {
+			return 0;
+		}
 	}
 	
 	

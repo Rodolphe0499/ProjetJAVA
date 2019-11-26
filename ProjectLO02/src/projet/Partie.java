@@ -80,7 +80,7 @@ public class Partie {
 		dek.melanger();
 		distribuerDek();
 		
-		//Demande aux joueurs réels uniquement si ils souhaitent observer ses cartes
+		//Demande aux joueurs réels uniquement si ils souhaitent observer ses cartes et déterminer sa face
 		for (int j=0; j<joueurs.size();j++) {
 			if (joueurs.get(j).getType() == true) {
 				Scanner sr = new Scanner(System.in);
@@ -92,10 +92,13 @@ public class Partie {
 				}
 				if (res.equalsIgnoreCase("o")) {
 					System.out.println("Voici tes cartes:"+joueurs.get(j).afficherCarteJoueur());
+					joueurs.get(j).choisirFaceCarte();
+				}
+				else {
+					joueurs.get(j).choisirFaceCarte();
 				}
 			}
 		}
-
 		
     }
 	
