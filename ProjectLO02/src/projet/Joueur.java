@@ -18,6 +18,9 @@ public class Joueur {
 	public String getNom() {
 		return pseudo;
 	}
+	public boolean getType() {
+		return this.type_joueur;
+	}
 	public void setNom(String nom) {
 		this.pseudo = nom;
 	}

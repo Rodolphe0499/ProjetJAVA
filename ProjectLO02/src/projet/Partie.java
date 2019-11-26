@@ -20,7 +20,7 @@ public class Partie {
 		int numero = sc.nextInt();
 		
 		while((numero != 3)&&(numero != 4)){
-			System.out.println("Veuillez taper 3 ou 4 ");
+			System.out.println(">>>Veuillez taper 3 ou 4!");
 			numero = sc.nextInt();
 	   }
 		//Demande nombre de joueurs physique
@@ -30,7 +30,7 @@ public class Partie {
 			int nbrejoueur = sc.nextInt();
 		
 			while((nbrejoueur != 1)&&(nbrejoueur != 2)&&(nbrejoueur != 3)&&(nbrejoueur != 4)){
-				System.out.println("Veuillez taper 1, 2, 3 ou 4 !");
+				System.out.println(">>>Veuillez taper 1, 2, 3 ou 4 !");
 				nbrejoueur = sd.nextInt();
 			}
 			this.nbreJoueur=nbrejoueur;
@@ -42,7 +42,7 @@ public class Partie {
 			int nbrejoueur = sc.nextInt();
 		
 			while((nbrejoueur != 1)&&(nbrejoueur != 2)&&(nbrejoueur != 3)){
-				System.out.println("Veuillez taper 1, 2, 3!");
+				System.out.println(">>>Veuillez taper 1, 2, 3!");
 				nbrejoueur = sd.nextInt();
 			}
 			this.nbreJoueur=nbrejoueur;
@@ -78,13 +78,25 @@ public class Partie {
 		stack = new Stack();
 		dek = new dekCarte();
 		dek.melanger();
-		System.out.println("\nDeck:"+dek);
-		this.distribuerDek();
+		distribuerDek();
 		
-		for (int s=0; s<joueurs.size();s++) {
-			System.out.println("Voici tes cartes:"+joueurs.get(s).afficherCarteJoueur());
+		//Demande aux joueurs réels uniquement si ils souhaitent observer ses cartes
+		for (int j=0; j<joueurs.size();j++) {
+			if (joueurs.get(j).getType() == true) {
+				Scanner sr = new Scanner(System.in);
+				System.out.println("\n[Joueur] "+joueurs.get(j)+", veux-tu voir tes cartes ?(o/n)");
+				String res = sr.nextLine();
+				while((!res.equalsIgnoreCase("o"))&&(!res.equalsIgnoreCase("n"))){
+					System.out.println(">>>Veuillez taper 'o' ou 'n' !");
+					res = sr.nextLine();
+				}
+				if (res.equalsIgnoreCase("o")) {
+					System.out.println("Voici tes cartes:"+joueurs.get(j).afficherCarteJoueur());
+				}
+			}
 		}
 
+		
     }
 	
 	public void distribuerDek() {
