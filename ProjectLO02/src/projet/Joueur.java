@@ -38,16 +38,20 @@ public class Joueur {
 	
 		if (type_joueur == true) {
 			Scanner sc = new Scanner(System.in);
+			
 			System.out.println("[Joueur] "+this.pseudo+", veux-tu retourner la première carte ou la seconde(1/2)?");
 			int numero = sc.nextInt();
+			this.cartejoue=numero;
+			
 			while((numero != 1)&&(numero != 2)){
 				System.out.println(">>>Veuillez taper 1 ou 2 !");
 				numero = sc.nextInt();	
-				this.cartejoue=numero;
-			}		
+			}	
+			
 			if(numero == 1) {
 				main.get(0).retournerCarte();
 			}
+			
 			else if (numero == 2) {
 				main.get(1).retournerCarte();
 			}
