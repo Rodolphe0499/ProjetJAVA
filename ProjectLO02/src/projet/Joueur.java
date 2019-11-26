@@ -36,7 +36,7 @@ public class Joueur {
 	public void choisirFaceCarte() {
 		if (type_joueur == true) {
 			Scanner sc = new Scanner(System.in);
-			System.out.println("[Joueur] "+this.pseudo+", voulez-vous retourner la première carte ou la seconde(1/2)?");
+			System.out.println("[Joueur] "+this.pseudo+", veux-tu retourner la première carte ou la seconde(1/2)?");
 			int numero = sc.nextInt();
 			while((numero != 1)&&(numero != 2)){
 				System.out.println(">>>Veuillez taper 1 ou 2 !");

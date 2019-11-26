@@ -18,7 +18,7 @@ public Carte(Couleur couleur,Valeur valeur,boolean faceCarte,Trophee trophee ) {
 
 public void retournerCarte() {
 	if(this.faceCarte == true) {
-		this.faceCarte = false;	
+		this.faceCarte = false;
 	}
 	else {
 		this.faceCarte = true;
