@@ -29,7 +29,18 @@ public class Joueur {
 		main.add(carte);
 	}
 	
-	
+	public void choisirOffre(Joueur a) { //A COMPLETER
+		if(a.VerifierOffre()==true) {
+			for(int i=0;i<main.size();i++) {
+				
+				
+			}
+		}
+		else {
+			System.out.println(">>>Vous ne pouvez pas choisir une offre incomplète.");
+		}
+		
+	}
 	public void recevoirCarte(Carte cartes) {
 		main.add(cartes);
 	}
@@ -148,6 +159,40 @@ public class Joueur {
 			return false;
 		}
 		return false;
+	}
+
+	public void faireUneOffre() {
+		if (getType() == true) {
+			Scanner sr = new Scanner(System.in);
+			System.out.println("\n[Joueur] "+getNom()+", veux-tu voir tes cartes ?(o/n)");
+			String res = sr.nextLine();
+			while((!res.equalsIgnoreCase("o"))&&(!res.equalsIgnoreCase("n"))){
+				System.out.println(">>>Veuillez taper 'o' ou 'n' !");
+				res = sr.nextLine();
+			}
+			if (res.equalsIgnoreCase("o")) {
+				System.out.println("Voici tes cartes:"+afficherCarteJoueur());
+				choisirFaceCarte();
+			}
+			else {
+				choisirFaceCarte();
+			}
+		}
+		else if (getType() == false){
+			choisirFaceCarte();
+		}
+	}
+
+	public String afficherCarteFaceUp() {
+		if (main.get(0).getFaceCarte()==true) {
+			return main.get(0).toString();
+		}
+		if(main.get(1).getFaceCarte()==true) {
+			return main.get(0).toString();
+		}
+		else {
+			return null;
+		}
 	}
 }
 

@@ -16,8 +16,7 @@ public class TropheeTiree {
 		trophee.add(cartes.getTrophee());
 	}
 	
-	public static void main(String[] args) {
-		
+	public void afficherTrophee() {
+		System.out.println("Voici les trophees pour cette partie:" +trophee.get(0)+" et "+trophee.get(1));
 	}
-
 }
