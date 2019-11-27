@@ -103,12 +103,11 @@ public class Partie {
 				joueurs.get(j).choisirFaceCarte();
 			}
 		}
-		//DEBUG:AFFICHER LES CARTES UP AVEC LEUR VALEUR ET LEUR COULEUR
-		/*for (int t=0;t<joueurs.size();t++) {
-			System.out.println(joueurs.get(t).getType()+"/"+joueurs.get(t).ValeurCarteFaceOuverte()+"/"+joueurs.get(t).CouleurCarteFaceOuverte());
-			
-		}*/
 		System.out.println("[Joueur]"+determinerPremierJoueur()+" commence la partie.");
+
+		
+		
+		
     }
 	
 	public void distribuerDek() {
@@ -237,7 +236,8 @@ public class Partie {
 		}
 		return null;
 	}
-		
+
+
 
 }
 

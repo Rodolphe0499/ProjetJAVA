@@ -136,4 +136,18 @@ public class Joueur {
 	}
 	return 0;
 	}
+	public boolean VerifierOffre() {
+		if (main.size()==2) {
+			for(int i=0; i<main.size();i++) {
+				if(main.get(i).getFaceCarte()==true && main.get(i+1).getFaceCarte()==false || main.get(i).getFaceCarte()==false && main.get(i+1).getFaceCarte()==true) {
+					return true;
+				}
+			}
+		}
+		else {
+			return false;
+		}
+		return false;
+	}
 }
+
