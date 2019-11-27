@@ -9,7 +9,6 @@ public class Test {
 		Partie p =new Partie();
 		
 		
-		
 	}
 
 }

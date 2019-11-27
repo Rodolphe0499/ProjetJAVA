@@ -5,7 +5,7 @@ import java.util.*;
 
 
 public class Partie {
-	
+	private int nbretotaljoueur;
 	private int nbreJoueur ;
 	private int nbreBots;
 	private LinkedList<Joueur> joueurs;
@@ -18,6 +18,7 @@ public class Partie {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Voulez-vous faire une partie à 3 ou à 4?");
 		int numero = sc.nextInt();
+		this.nbretotaljoueur=numero;
 		
 		while((numero != 3)&&(numero != 4)){
 			System.out.println(">>>Veuillez taper 3 ou 4!");
@@ -98,8 +99,16 @@ public class Partie {
 					joueurs.get(j).choisirFaceCarte();
 				}
 			}
+			else if (joueurs.get(j).getType() == false){
+				joueurs.get(j).choisirFaceCarte();
+			}
 		}
-		
+		//DEBUG:AFFICHER LES CARTES UP AVEC LEUR VALEUR ET LEUR COULEUR
+		/*for (int t=0;t<joueurs.size();t++) {
+			System.out.println(joueurs.get(t).getType()+"/"+joueurs.get(t).ValeurCarteFaceOuverte()+"/"+joueurs.get(t).CouleurCarteFaceOuverte());
+			
+		}*/
+		System.out.println("[Joueur]"+determinerPremierJoueur()+" commence la partie.");
     }
 	
 	public void distribuerDek() {
@@ -124,103 +133,111 @@ public class Partie {
 			System.out.println(joueurs.get(i)+" ");  
 	    }
     }
-	/*public Joueur determinerPremierJoueur() {
-		Valeur v= Valeur.AS;
-		int j =0;
-		int i=1;*/
 	
-			/*for(i=1; i <=joueurs.size(); i++) {
-				if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.AS)&&(v== Valeur.AS)) {
-					
+	public Joueur determinerPremierJoueur() {
+		int max_valeur;
+		if (this.nbretotaljoueur==3) {
+			for(int i=0; i<joueurs.size();i++) {
+				
+				
+				//Soit le premier joueur de la liste à une valeur SUPERIEUR au second
+				if(joueurs.get(i).ValeurIntCarteFaceOuverte()>joueurs.get(i+1).ValeurIntCarteFaceOuverte()){
+					max_valeur = joueurs.get(i).ValeurIntCarteFaceOuverte();
+					//Soit le premier joueur de la liste à une valeur SUPERIEUR au troisieme
+					if( max_valeur > joueurs.get(i+2).ValeurIntCarteFaceOuverte()) {
+						return joueurs.get(i);//OK
+					}
+					//Soit le premier joueur de la liste à une valeur EGALE au troisieme
+					else if (max_valeur == joueurs.get(i+2).ValeurIntCarteFaceOuverte()) {
+						//On compare alors les couleurs
+						if (joueurs.get(i).CouleurIntCarteFaceOuverte()>joueurs.get(i+2).CouleurIntCarteFaceOuverte()) {
+							return joueurs.get(i);//OK
+						}
+						else {
+							return joueurs.get(i+2);//OK
+						}
+					}
+					//Sinon c'est le 3eme qui à la plus grande carte
+					else {
+						return joueurs.get(i+2);//OK
+					}
 				}
 				
-                 if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.DEUX)&&(v== Valeur.AS)) {
-					v= Valeur.DEUX;
-					j=i;
+				
+				
+				else if(joueurs.get(i).ValeurIntCarteFaceOuverte()==joueurs.get(i+1).ValeurIntCarteFaceOuverte()){
+					//On compare alors les couleurs
+					if (joueurs.get(i).CouleurIntCarteFaceOuverte() > joueurs.get(i+1).CouleurIntCarteFaceOuverte()) {
+						max_valeur = joueurs.get(i).ValeurIntCarteFaceOuverte();
+						//Soit le premier joueur de la liste à une valeur SUPERIEUR au troisieme
+						if( max_valeur > joueurs.get(i+2).ValeurIntCarteFaceOuverte()) {
+							return joueurs.get(i);//OK
+						}
+						//Soit le premier joueur de la liste à une valeur EGALE au troisieme
+						else if (max_valeur == joueurs.get(i+2).ValeurIntCarteFaceOuverte()) {
+							//On compare alors les couleurs
+							if (joueurs.get(i).CouleurIntCarteFaceOuverte()>joueurs.get(i+2).CouleurIntCarteFaceOuverte()) {
+								return joueurs.get(i);//OK
+							}
+							else {
+								return joueurs.get(i+2);//OK
+							}
+						}
+					}
+				
+					else {
+						max_valeur = joueurs.get(i+1).ValeurIntCarteFaceOuverte();
+						//Soit le second joueur à une valeur SUPERIEUR au troisieme
+						if( max_valeur > joueurs.get(i+2).ValeurIntCarteFaceOuverte()) {
+							return joueurs.get(i+1);//OK
+						}
+						//Soit le second joueur de la liste à une valeur EGALE au troisieme
+						else if (max_valeur == joueurs.get(i+2).ValeurIntCarteFaceOuverte()) {
+							//On compare alors les couleurs
+							if (joueurs.get(i+1).CouleurIntCarteFaceOuverte()>joueurs.get(i+2).CouleurIntCarteFaceOuverte()) {
+								return joueurs.get(i+1);
+							}
+							else {
+								return joueurs.get(i+2);
+							}
+						}
+						else {
+							return joueurs.get(i+2);
+						}
+				
+					}
 				}
-                 
-                 if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.TROIS)&&(v== Valeur.AS)) {
-                	 v= Valeur.TROIS;
-                	 j=i;
- 				}
-                 
-                 if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.QUATRE)&&(v== Valeur.AS)) {
- 					v=Valeur.QUATRE;
- 					j=i;
- 				}
-                 if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.ZERO)&&(v== Valeur.AS)) {
- 					v=Valeur.AS;
- 					j=i;
- 				} 
-                 
-                 if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.AS)&&(v== Valeur.DEUX)) {
- 					
- 				}
- 				
-                  if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.DEUX)&&(v== Valeur.DEUX)) {
- 					
- 				}
-                  
-                  if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.TROIS)&&(v== Valeur.DEUX)) {
-                 	 v= Valeur.TROIS;
-  				}
-                  
-                  if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.QUATRE)&&(v== Valeur.DEUX)) {
-  					v=Valeur.QUATRE;
-  				}
-                  if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.ZERO)&&(v== Valeur.DEUX)) {
-  					v=Valeur.DEUX;
-  				} 
-                  if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.AS)&&(v== Valeur.TROIS)) {
-  					
-  				}
-  				
-                   if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.DEUX)&&(v== Valeur.TROIS)) {
-  					
-  				}
-                   
-                   if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.TROIS)&&(v== Valeur.TROIS)) {
-                  	
-   				}
-                   
-                   if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.QUATRE)&&(v== Valeur.TROIS)) {
-   					v=Valeur.QUATRE;
-   				}
-                   if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.ZERO)&&(v== Valeur.TROIS)) {
-   					v=Valeur.TROIS;
-   				} 
-                   if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.AS)&&(v== Valeur.QUATRE)) {
-   					
-   				}
-   				
-                    if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.DEUX)&&(v== Valeur.QUATRE)) {
-   					
-   				}
-                    
-                    if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.TROIS)&&(v== Valeur.QUATRE)) {
-                   	
-    			}
-                    
-                    if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.QUATRE)&&(v== Valeur.QUATRE)) {
-    					
-    			}
-                    if((joueurs.get(i).ValeurCarteFaceOuverte()==Valeur.ZERO)&&(v== Valeur.QUATRE)) {
-    					v=Valeur.QUATRE;
-                }	
-    				
-			}
-			return v;*/
-	/*	ListIterator it = joueurs.listIterator();
-		for(i=1; i <=joueurs.size(); i++) {
-			if(it.hasNext()) {
-				
-				
+						
+						
+						
+				//Soit le premier à une carte INFERIEUR au second
+				else if(joueurs.get(i).ValeurIntCarteFaceOuverte()<joueurs.get(i+1).ValeurIntCarteFaceOuverte()){
+					max_valeur = joueurs.get(i+1).ValeurIntCarteFaceOuverte();
+					//Soit le second joueur de la liste à une valeur SUPERIEUR au troisieme
+					if( max_valeur > joueurs.get(i+2).ValeurIntCarteFaceOuverte()) {
+						return joueurs.get(i+1);//OK
+					}
+					//Soit le second joueur de la liste à une valeur EGALE au troisieme
+					else if (max_valeur == joueurs.get(i+2).ValeurIntCarteFaceOuverte()) {
+						//On compare alors les couleurs
+						if (joueurs.get(i+1).CouleurIntCarteFaceOuverte()>joueurs.get(i+2).CouleurIntCarteFaceOuverte()) {
+							return joueurs.get(i+1);//OK
+						}
+						else {
+							return joueurs.get(i+2);//OK
+						}
+					}
+					//Sinon c'est le 3eme qui à la plus grande carte
+					else {
+						return joueurs.get(i+2);//OK
+					}
+				}
+
 			}
 		}
+		return null;
+	}
 		
-		
-	}*/
-	
-	
-	
+
 }
+

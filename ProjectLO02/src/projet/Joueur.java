@@ -7,13 +7,13 @@ public class Joueur {
 	private String pseudo;
 	private boolean type_joueur;
 	private LinkedList<Carte> main;
-	private int cartejoue;
+	private int carteUP;
 
 	public Joueur(String name, boolean type) {
 		this.pseudo=name;
 		this.type_joueur = type;
 		main = new LinkedList<Carte>();
-		this.cartejoue=0;
+		this.carteUP=0;
 		
 	}
 	public String getNom() {
@@ -41,11 +41,12 @@ public class Joueur {
 			
 			System.out.println("[Joueur] "+this.pseudo+", veux-tu retourner la première carte ou la seconde(1/2)?");
 			int numero = sc.nextInt();
-			this.cartejoue=numero;
+			this.carteUP=numero;
 			
 			while((numero != 1)&&(numero != 2)){
 				System.out.println(">>>Veuillez taper 1 ou 2 !");
-				numero = sc.nextInt();	
+				numero = sc.nextInt();
+				this.carteUP=numero;
 			}	
 			
 			if(numero == 1) {
@@ -57,14 +58,16 @@ public class Joueur {
 			}
 		
 		}
-		else if (type_joueur == false) {
+		
+		if (type_joueur == false) {
 			 Random r = new Random();
 			 int n = r.nextInt(1)+1;
+			 this.carteUP=n;
 			 if(n == 1) {
 					main.get(1).retournerCarte();
 				}
-			else if (n == 2) {
-				main.get(2).retournerCarte();
+			 else if (n == 2) {
+			    	main.get(2).retournerCarte();
 			}
 		}
 		
@@ -83,15 +86,54 @@ public class Joueur {
 	
 	public Valeur ValeurCarteFaceOuverte() {    
 		Valeur v = Valeur.AS;
-		if (this.cartejoue==1) {
-			v =main.get(0).getValeur();
+		if (this.carteUP==1) {
+			v = main.get(0).getValeur();
 		}
-		if (this.cartejoue==2) {
-			v =main.get(1).getValeur();
+		if (this.carteUP==2) {
+			v = main.get(1).getValeur();
 		}
 		
 		return v;
 	}
-
 	
+	public int ValeurIntCarteFaceOuverte() {
+		switch (ValeurCarteFaceOuverte()) {
+			case QUATRE:
+				return 4;
+			case TROIS:
+				return 3;
+			case DEUX:
+				return 2;
+			case AS:
+				return 1;
+			case ZERO:
+				return 0;
+		}
+		return 0;
+	}
+
+	public Couleur CouleurCarteFaceOuverte() {    
+		Couleur c = Couleur.COEUR;
+		if (this.carteUP==1) {
+			c = main.get(0).getCouleur();
+		}
+		if (this.carteUP==2) {
+			c = main.get(1).getCouleur();
+		}
+		
+		return c;
+	}
+	public int CouleurIntCarteFaceOuverte() {
+		switch (CouleurCarteFaceOuverte()) {
+		case PIQUE:
+			return 4;
+		case TREFLE:
+			return 3;
+		case CARREAU:
+			return 2;
+		case COEUR:
+			return 1;
+	}
+	return 0;
+	}
 }
