@@ -1,23 +1,22 @@
-package projet;
+package fr.utt.lo02.jest_jason_rodolphe.modeles;
 
 import java.util.*;
 
 
-public class dekCarte {
-    public final static int NOMBRE_DE_CARTES = Valeur.values().length *
+public class DekCarte {
+    public final static int NOMBRE_DE_CARTES = (Valeur.values().length-1) *
     		Couleur.values().length +1;
     
-    private LinkedList<Carte> dek;
-    public dekCarte () {
+    protected LinkedList<Carte> dek;
+    public DekCarte () {
     	
     	dek = new LinkedList<Carte>();
     	Carte joker = new Carte(Couleur.PIQUE,Valeur.ZERO,false,Trophee.BestJest);
     	
-    	for (Valeur v : Valeur.values()) {
-    		Carte carte = new Carte(Couleur.COEUR,v, false, Trophee.Joker);
-    		dek.add(carte);
-    		
-    	}
+    	dek.add(new Carte(Couleur.COEUR,Valeur.AS, false, Trophee.Joker));
+    	dek.add(new Carte(Couleur.COEUR,Valeur.DEUX, false, Trophee.Joker));	
+    	dek.add(new Carte(Couleur.COEUR,Valeur.TROIS, false, Trophee.Joker));
+    	dek.add(new Carte(Couleur.COEUR,Valeur.QUATRE, false, Trophee.Joker));
     	
     	dek.add(new Carte(Couleur.TREFLE,Valeur.AS, false, Trophee.HighestPIQUE));
     	dek.add(new Carte(Couleur.TREFLE,Valeur.DEUX, false, Trophee.LowestCOEUR));
@@ -48,7 +47,7 @@ public class dekCarte {
     }
   
     public Carte tirerCarte() {
-    	int position = (int) Math.round((dekCarte.NOMBRE_DE_CARTES -1)*Math.random());
+    	int position = (int) Math.round((DekCarte.NOMBRE_DE_CARTES -1)*Math.random());
     	return dek.remove(position);
     }
     
@@ -60,5 +59,7 @@ public class dekCarte {
     	return dek.toString();
     }
 
-
+    public int getSizeDek() {
+    	return dek.size();
+    }
 }
