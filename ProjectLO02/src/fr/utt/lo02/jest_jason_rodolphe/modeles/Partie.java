@@ -478,8 +478,7 @@ public class Partie {
 }
 }
 	public int getNombreTour() {
-	  	int tour=0;
-	    return	tour= ((dek.NOMBRE_DE_CARTES-2)-((dek.NOMBRE_DE_CARTES-2))%this.nbretotaljoueur)/this.nbretotaljoueur -1;
+	    return	 ((dek.NOMBRE_DE_CARTES-2)-((dek.NOMBRE_DE_CARTES-2))%this.nbretotaljoueur)/this.nbretotaljoueur -1;
 	} 
 
     public void compterScore() {

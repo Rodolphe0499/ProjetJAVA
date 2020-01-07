@@ -15,7 +15,7 @@ public class Test {
 		p.afficherParticipant();
 		p.tirerTrophee();
 		p.distribuerDek();
-		for(int i=1;i<=p.getNombreTour();i++ ) {
+		for(int i=1;i<p.getNombreTour();i++ ) {
 		System.out.println(" tour n°"+ i);
 		p.MakeOffer();
 		p.afficherOffres();

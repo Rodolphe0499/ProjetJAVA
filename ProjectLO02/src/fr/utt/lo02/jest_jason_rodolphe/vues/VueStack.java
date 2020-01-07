@@ -3,10 +3,8 @@ package fr.utt.lo02.jest_jason_rodolphe.vues;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JSplitPane;
-import java.awt.BorderLayout;
 
-public class InterfaceDebutPartie {
+public class VueStack {
 
 	private JFrame frame;
 
@@ -17,7 +15,7 @@ public class InterfaceDebutPartie {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					InterfaceDebutPartie window = new InterfaceDebutPartie();
+					VueStack window = new VueStack();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -29,7 +27,7 @@ public class InterfaceDebutPartie {
 	/**
 	 * Create the application.
 	 */
-	public InterfaceDebutPartie() {
+	public VueStack() {
 		initialize();
 	}
 
@@ -40,9 +38,6 @@ public class InterfaceDebutPartie {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		JSplitPane splitPane = new JSplitPane();
-		frame.getContentPane().add(splitPane, BorderLayout.CENTER);
 	}
 
 }
