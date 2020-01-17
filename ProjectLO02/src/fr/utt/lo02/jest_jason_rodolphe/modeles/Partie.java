@@ -4,20 +4,22 @@ package fr.utt.lo02.jest_jason_rodolphe.modeles;
 import java.util.*;
 
 
-public class Partie {
+public class Partie extends Observable implements Runnable {
+	
 	private int nbretotaljoueur;
 	private int nbreJoueur ;
 	private int nbreBots;
 	private int niveau;
-	private LinkedList<Joueurs> joueurs;
 	private DekCarte dek;
 	private Stack stack;
 	private TropheeTiree tropheeTiree;
 	private Joueur dernierJoueur;
 	private boolean terminer;
 	private String extension;
-	private boolean variante;
+	private int variante;
 	
+	private ArrayList<Observer> listObserver = new ArrayList<Observer>(); 
+	private LinkedList<Joueurs> joueurs;
 	
 	public Partie() {
 		       
@@ -26,6 +28,21 @@ public class Partie {
 		tropheeTiree = new TropheeTiree();
 		terminer=false;
     }
+	
+	public void addObserver(Observer obs) {
+	    this.listObserver.add(obs);
+	}
+
+	public void notifyObservers(Object arg) {
+		for (Observer obs : listObserver){
+			obs.update(this, arg);
+		}
+	}
+
+	public void deleteObserver(Observer o) {
+	    listObserver.remove(o);
+	}  
+
 	public void demanderNombreJoueur() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Voulez-vous faire une partie à 3 ou à 4?");
@@ -38,6 +55,9 @@ public class Partie {
 		}
 	}
 
+	public void demanderNombreJoueur(int reel, int virtuel) {
+		this.nbretotaljoueur=reel+virtuel;
+	}
 	public void demanderNombreJoueurPhysique() {
 				if (this.nbretotaljoueur == 4) {
 					Scanner sd = new Scanner(System.in);
@@ -65,7 +85,10 @@ public class Partie {
 				}
 				
 	}
-    
+	public void demanderNombreJoueurPhysique(int nbre) {
+		this.nbreJoueur=nbre;
+	}
+	
 	public void demanderDifficulté() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Quelle niveau de difficulté voulez-vous, 1 ou 2");
@@ -75,6 +98,9 @@ public class Partie {
 			System.out.println(">>>Veuillez taper 3 ou 4!");
 			this.niveau= sc.nextInt();
 	   }
+	}
+	public void demanderDifficulté(int niveau) {
+		this.niveau=niveau;
 	}
 	
 	public void demanderExtension() {
@@ -98,17 +124,13 @@ public class Partie {
 	}
     public void demanderVariante() {
     	Scanner sc = new Scanner(System.in);
-		System.out.println("Voulez-vous jouer avec les regles normales ou les une variante des regles (taper 'oui' pour les regles classiques et 'non' pour la variante) ");
-        String res=sc.nextLine();
-        while((!res.equalsIgnoreCase("oui"))&&(!res.equalsIgnoreCase("non"))){
-			System.out.println(">>>Veuillez taper 'oui' ou 'non' !");
-			res = sc.nextLine();
+		System.out.println("Voulez-vous jouer avec les regles normales, en mode classique ou en mode vintage (taper '0' pour les regles classiques , '1' pour la variante classique et '2' pour le vintage) ");
+        int res=sc.nextInt();
+        while((res!=0)&&(res!=1)&&res!=2){
+			System.out.println(">>>Veuillez taper '0', '1' ou '2' !");
+			res = sc.nextInt();
         }
-        if(res.equalsIgnoreCase("non")) {
- 		  this.variante=true;
- 		} else {
- 			this.variante=false;
- 		}
+      this.variante=res;
     }
 	public void creerJoueur() {
 		//Création des joueurs rééls
@@ -485,10 +507,12 @@ public class Partie {
     	
     	Visitor scoreVisitor = null;
 
-         if(this.variante) {
+         if(this.variante==0) {
+        	 scoreVisitor= new ScoreVisitor();
+         }else if(this.variante==1) {
         	 scoreVisitor= new ScoreVisitorVariante();
          }else {
-        	 scoreVisitor= new ScoreVisitor();
+        	 scoreVisitor= new ScoreVisitorVintage();
          }
     	 	
     	int s=0;
@@ -504,9 +528,9 @@ public class Partie {
               s =joueurs.get(i).getJest().accept(scoreVisitor);
             scores[i] += s;
             }
+         }
            for( int i=0 ; i<this.nbretotaljoueur ; i++ ) {
              joueurs.get(i).setScore(scores[i]);
-         }
          }
 }
      
@@ -537,5 +561,37 @@ public class Partie {
     		System.out.println("Jest de "+joueurs.get(i).getNom()+"  "+joueurs.get(i).getJest().toString());
     	}
     }
+    
+    public LinkedList<Joueurs> getJoueurs(){
+    	return this.joueurs;
+    }
+    
+    
+    public void run() {
+		Partie p = new Partie();
+		p.demanderNombreJoueur();
+		p.demanderNombreJoueurPhysique() ;
+		p.demanderDifficulté() ;
+ 		p.demanderExtension() ;
+ 		p.demanderVariante();
+		p.creerJoueur() ;
+		p.afficherParticipant();
+		p.tirerTrophee();
+		p.distribuerDek();
+		for(int i=1;i<p.getNombreTour();i++ ) {
+		System.out.println(" tour n°"+ i);
+		p.MakeOffer();
+		p.afficherOffres();
+		p.afficherPremierJoueur();
+		p.prendreDesOffres(i);
+		p.ajouterDekToStack();
+		p.distribuerStack();
+		}
+		p.attribuerTrophee();
+		p.compterScore();
+		p.afficherJest();
+		p.afficherScore();
+		p.afficherVainqueur();
+	    }
 }    
 

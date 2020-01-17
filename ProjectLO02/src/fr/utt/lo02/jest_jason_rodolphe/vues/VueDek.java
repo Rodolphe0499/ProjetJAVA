@@ -39,17 +39,18 @@ public class VueDek extends JPanel{
 	
 	public void genererCartes(){
 		try {
-			Image asdecarreau = ImageIO.read(new File("C:\\Users\\jbria\\eclipse-workspace\\VueCarte\\as_de_carreau_MajorityFour"));
-			cartes.add(asdecarreau);
 			Image joker = ImageIO.read(new File("C:\\Users\\jbria\\eclipse-workspace\\VueCarte\\joker_BestJest"));
 			cartes.add(joker);
 			
+			Image asdecarreau = ImageIO.read(new File("C:\\Users\\jbria\\eclipse-workspace\\VueCarte\\as_de_carreau_MajorityFour"));
+			cartes.add(asdecarreau);
 			Image asdecoeur = ImageIO.read(new File("C:\\Users\\jbria\\eclipse-workspace\\VueCarte\\as_de_coeur_joker"));
 			cartes.add(asdecoeur);
 			Image asdepique = ImageIO.read(new File("C:\\Users\\jbria\\eclipse-workspace\\VueCarte\\as_de_pique_HighestTrefle"));
 			cartes.add(asdepique);
 			Image asdetrefle = ImageIO.read(new File("C:\\Users\\jbria\\eclipse-workspace\\VueCarte\\as_de_trefle_HighestPique"));
 			cartes.add(asdetrefle);
+			
 			Image deuxdecarreau = ImageIO.read(new File("C:\\Users\\jbria\\eclipse-workspace\\VueCarte\\deux_de_carreau_HighestCarreau"));
 			cartes.add(deuxdecarreau);
 			Image deuxdecoeur = ImageIO.read(new File("C:\\Users\\jbria\\eclipse-workspace\\VueCarte\\deux_de_coeur_joker"));
@@ -58,6 +59,7 @@ public class VueDek extends JPanel{
 			cartes.add(deuxdepique);
 			Image deuxdetrefle = ImageIO.read(new File("C:\\Users\\jbria\\eclipse-workspace\\VueCarte\\deux_de_trefle_LowestCoeur"));
 			cartes.add(deuxdetrefle);
+			
 			Image quatredecarreau = ImageIO.read(new File("C:\\Users\\jbria\\eclipse-workspace\\VueCarte\\quatre_de_carreau_BestJestNoJoke"));
 			cartes.add(quatredecarreau );
 			Image quatredecoeur  = ImageIO.read(new File("C:\\Users\\jbria\\eclipse-workspace\\VueCarte\\quatre_de_coeur_joker"));
@@ -66,6 +68,7 @@ public class VueDek extends JPanel{
 			cartes.add(quatredepique);
 			Image quatredetrefle = ImageIO.read(new File("C:\\Users\\jbria\\eclipse-workspace\\VueCarte\\quatre_de_trefle_LowestPique"));
 			cartes.add(quatredetrefle);
+			
 			Image troisdecarreau = ImageIO.read(new File("C:\\Users\\jbria\\eclipse-workspace\\VueCarte\\trois_de_carreau_LowestCarreau"));
 			cartes.add(troisdecarreau);
 			Image troisdecoeur = ImageIO.read(new File("C:\\Users\\jbria\\eclipse-workspace\\VueCarte\\trois_de_coeur_joker"));

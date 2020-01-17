@@ -12,37 +12,52 @@ public class Stack {
 	    	stack = new LinkedList<Carte>();
 	    	
 	    }
-	 
-	 public static void shuffle(LinkedList<Carte>dek) {
-	    	
-	    }
 	    
+	 /**
+	  * permet de tirer la carte du dessus du stack
+	  * @return
+	  */
 	 public Carte tirerCarteDuDessus() {
 	    	return stack.pop();
 	    }
 	 
-	    public Carte tirerCarte() {
+	 /**
+	  * permet de tirer une carte de manière aleatoire dans le stack
+	  * @return
+	  */
+	 public Carte tirerCarte() {
 	    	int position = (int) Math.round((DekCarte.NOMBRE_DE_CARTES -1)*Math.random());
 	    	return stack.remove(position);
 	    }
-	    
-	    public boolean estVide() {
+	   
+	 /**
+	  * permet de savoir si le stack est vide
+	  * @return
+	  */
+	 public boolean estVide() {
 	    	return stack.isEmpty();
 	    }
 	    
-	    public String toString() {
+	 /**
+	  * permet d'afficher le stack
+	  */
+     public String toString() {
 	    	return stack.toString();
 	    }
-	    public void ajouterStack(Carte carte) {
+	 
+     /**
+      * permet d'ajouter une carte au stack
+      * @param carte
+      */
+     public void ajouterStack(Carte carte) {
 	    	stack.add(carte);
 	    }
 
-	    public void melangerStack() {
+     /**
+      * permet de melanger le stack
+      */
+	 public void melangerStack() {
 	    	Collections.shuffle(stack);
 	    }
-	public static void main(String[] args) {
-		
-
-	}
 
 }

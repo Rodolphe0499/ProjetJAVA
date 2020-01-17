@@ -159,5 +159,15 @@ public class Joueur extends Joueurs {
     public void envoyerCarteFinal() {
     	jest. envoyerCarte(main.get(0));
     }
+    @Override
+    public boolean isVirtuel() {
+    	return false;
+    }
+
+	@Override
+	public LinkedList<Carte> getMain() {
+		
+		return main;
+	}
 }
 

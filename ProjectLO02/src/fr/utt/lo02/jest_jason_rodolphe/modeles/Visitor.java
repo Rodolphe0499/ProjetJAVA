@@ -6,7 +6,7 @@ public abstract class Visitor {
 	protected String methodeActuelle = "tout";
 
     /** 
-     * Permet de changer la regle de comptage de carte pour les lancer une par une
+     * Permet de changer la regle de comptage de carte 
      *
      * @param nouvelleMethode La methode de comptage
      */

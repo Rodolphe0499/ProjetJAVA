@@ -1,43 +1,51 @@
 package fr.utt.lo02.jest_jason_rodolphe.vues;
 
-import java.awt.EventQueue;
+import java.awt.BorderLayout;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.NoSuchElementException;
 
-import javax.swing.JFrame;
+import javax.imageio.ImageIO;
+import javax.swing.JPanel;
 
-public class VueStack {
-
-	private JFrame frame;
+public class VueStack extends JPanel{
 
 	/**
-	 * Launch the application.
+	 * 
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VueStack window = new VueStack();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	private static final long serialVersionUID = 1L;
+	
+	private LinkedList<Image> stack;
+	
+	public VueStack(){
+		super();
+		this.setLayout(new BorderLayout());
+		this.setOpaque(false);
+		this.stack = new LinkedList<Image>();
 	}
-
-	/**
-	 * Create the application.
-	 */
-	public VueStack() {
-		initialize();
+	
+	public void paintComponent(Graphics g){
+		try {
+		      Image img = ImageIO.read(new File("C:\\Users\\jbria\\eclipse-workspace\\VueCarte\\face_down"));
+		      g.drawImage(img, 0, 0, 100, 180, this);
+		     
+		} catch (IOException e) {
+		      e.printStackTrace();
+		}
 	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	
+	
+		
+	
+	public void ajouterAuStack(Image c){
+		this.stack.add(c);
+	}
+	
+	public LinkedList<Image> getStack() {
+		return stack;
 	}
 
 }

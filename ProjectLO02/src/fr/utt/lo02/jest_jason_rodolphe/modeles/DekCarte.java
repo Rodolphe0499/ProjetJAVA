@@ -37,28 +37,49 @@ public class DekCarte {
     	
     }
     
+    /**
+     * permet de melanger le tas de carte
+     */
     public  void melanger() {
     	Collections.shuffle(dek);
     }
     
-    
+    /**
+     * permet de tirer la carte au dessus du tas de carte
+     * @return
+     */
     public Carte tirerCarteDuDessus() {
     	return dek.pop();
     }
   
+    /**
+     * permet de retirer une carte de manière aleatoire 
+     * @return
+     */
     public Carte tirerCarte() {
     	int position = (int) Math.round((DekCarte.NOMBRE_DE_CARTES -1)*Math.random());
     	return dek.remove(position);
     }
     
+    /**
+     * permet de savoir si le dek est vide
+     * @return
+     */
     public boolean estVide() {
     	return dek.isEmpty();
     }
     
+    /**
+     * permet d'afficher le dek
+     */
     public String toString() {
     	return dek.toString();
     }
 
+    /**
+     * permet de recuperer le nombre de carte dans le dek
+     * @return
+     */
     public int getSizeDek() {
     	return dek.size();
     }
